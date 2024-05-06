@@ -1,0 +1,7 @@
+Diffusion Model 저자가 쓴 논문이어서 놀랬다.
+이론이 같아서였을까..
+DDPM 과의 차이를 생각하면서 읽어 보도록 한다.
+
+
+
+이 논문에서 강조하고 있는 것 중에 "conditional sampling technique" 이 있다.
