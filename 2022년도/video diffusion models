@@ -2,6 +2,11 @@ Diffusion Model 저자가 쓴 논문이어서 놀랬다.
 이론이 같아서였을까..
 DDPM 과의 차이를 생각하면서 읽어 보도록 한다.
 
+이 논문은 비디오의 생성을 diffusion 에서 시도한 첫 논문이라 그 의미가 더 큰 것 같다.
 
-
-이 논문에서 강조하고 있는 것 중에 "conditional sampling technique" 이 있다.
+1. 이미지 생성 모델과이 차이점은?
+이미지는 temporal 하게 생각할 필요가 없지만 비디오는 temporal 을 생각해 주어야 한다.
+비디오를 표현할 때는 factorized over space and time 이라는 표현을 쓴다.
+단순하게, 2D Unet 에서는 (3X3) filter 가 사용되었지만 3D 에서는 (1X3X3) filter 가 사용된다는 점이 차이점이라 할 수 있다.
+2D 에서는 (height x width x channel) 로 표현되었던 것과 다르게 3D 에서는 (frame X height x width x channel) 의 4D 로 표현이 된다.
+즉, space 와 time 이 반복적? (펙토리알) 으로 표현이 된다. --> spatial and temporal factorized
