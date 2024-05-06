@@ -1,0 +1,17 @@
+1. 이 연구를 왜 시작하게 되었을까?
+video 를 customize 하는 방법이다.
+문제는 아래와 같은 시나리오로 정의될 수 있다.
+"하나의 reference video 에서 motion 을 따서, 새로운 subject 와 scene 에 붙여서 새로운 video 을 만드는 것"
+이를 위해서 LoRA 를 이용하여 다양한 비디오 생성으로 접근하려는 시도이다.
+
+2. 기존의 기술들은 어디까지 성장해 왔나?
+1) 개인화 비디오 생성이 가능하기는 하지만 motion control 이 여전히 힘든 점이 있다.
+2) Lora 를 이용하면 개인화가 가능은 하지만, T2V 모델에 바로 적용하게 되면, motion preservation 이 정확하지 않다는 한계가 있다.
+3) Appearance Absorbed Module 을 이용하여, motion 정보로부터 spatial information 을 추출하는 기술을 이용한다. reference video 를 absorb 해서, 제안하는 임시 Lora 에 motion 정보를 주게 된다.
+We introduce a three-stage training and inference pipeline as illustrated in Fig. 2 to connect all the components we have proposed.
+3단계로 학습하고 inference 를 하게 된다. 
+[1] unordered video 에서 Lora 학습함으로써 frame 마다의 spatial information 을 뽑아내게 된다.
+[2] 학습된 appearance absorber 을 loading 하고, 제안하는 Temporal Lora 를 temporal layer 에 학습하게 된다.
+[3] 고정된 frame 을 reconstruct 해서, Temporal Lora 가 temporal signal 에 집중하게 하고, spatial information 을 최소화 시킨다.
+[4] 최종 inference 단계에서, reference video 로부터 appearance 를 encoding 하는 absorber 을 제거하고, 학습된 temporal Lora 만을 이용해서 inference 하게 된다.
+새로운 subject 와풍경이 들어간 text prompt 가 주어질 때, 우리의 모델은 정확하게 학습된 motion signature 을 새로운 appearnce 에 넣는것 뿐만 아니라, 다양한 motion 을 생성할 수 있게 된다.
